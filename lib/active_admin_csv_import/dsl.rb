@@ -19,6 +19,7 @@ module ActiveAdminCsvImport
       collection_action :example_csv do
         csv_column_names = CSV.generate do |csv|
           csv << columns.map(&:to_s).map(&:humanize)
+          csv << ['5401X-0', 'Kohler', 'Veil Floor Mount Intelligent Toilet', '432710', '430000']
         end
         send_data(csv_column_names,
                   type: 'text/csv; charset=utf-8; header=present',
