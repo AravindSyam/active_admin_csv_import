@@ -11,7 +11,7 @@ module ActiveAdminCsvImport
       required_columns = options[:required_columns] ||= columns
 
       action_item :import_csv, :only => :index do
-        link_to "Import #{active_admin_config.resource_name.to_s.pluralize}",
+        link_to "Import CSV",
                 :action => 'import_csv'
       end
 
@@ -19,7 +19,9 @@ module ActiveAdminCsvImport
       collection_action :example_csv do
         csv_column_names = CSV.generate do |csv|
           csv << columns.map(&:to_s).map(&:humanize)
-          csv << ['5401X-0', 'Kohler', 'Veil Floor Mount Intelligent Toilet', '432710', '430000']
+          csv << ['5401X-0', 'Kohler', 'Veil Floor Mount Intelligent Toilet', '432710']
+          csv << ['F2010201', 'Cera', 'CQ1008 DIVA ANGLE COCK', '840']
+          csv << ['DUO-CHR-62743', 'Artize', 'TOILET BRUSH HOLDER WITH SHELF', '4600', '4010']
         end
         send_data(csv_column_names,
                   type: 'text/csv; charset=utf-8; header=present',
